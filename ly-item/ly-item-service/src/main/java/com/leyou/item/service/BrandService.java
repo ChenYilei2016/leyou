@@ -43,4 +43,19 @@ public class BrandService {
         PageInfo<Brand> brandPageInfo = new PageInfo<>(brands);
         return new PageResult<>(brandPageInfo.getTotal(),brandPageInfo.getList());
     }
+
+    /**
+     * 保存品牌 和 分类的列表
+     * @param brand
+     * @param ids
+     */
+    public void save(Brand brand, List<Long> ids) {
+
+        int brandId = this.brandMapper.insert(brand);
+
+        ids.forEach( (categoryId)->{
+            brandMapper.insertCategoryIdBrandId(brandId,categoryId);
+        } );
+
+    }
 }

@@ -1,0 +1,27 @@
+
+eureka:
+  client:
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka
+  instance:
+    instance-id: 127.0.0.1
+    prefer-ip-address: true
+
+
+server:
+  port: 8082
+spring:
+  application:
+    name: upload-service
+  servlet:
+    multipart:
+      max-file-size: 5MB
+fdfs:
+  thumbImage:             #缩略图生成参数
+    width: 80
+    height: 80
+  tracker-list:
+    - 132.232.117.84:22122
+  so-timeout: 2000
+  connect-timeout: 1000

@@ -1,5 +1,6 @@
 package com.leyou.common.utils;
 
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,17 +12,18 @@ import java.net.URLDecoder;
 import java.net.URLEncoder;
 
 /**
- * 
+ *
  * Cookie 工具类
  *
  */
+
 public final class CookieUtils {
 
 	protected static final Logger logger = LoggerFactory.getLogger(CookieUtils.class);
 
 	/**
 	 * 得到Cookie的值, 不编码
-	 * 
+	 *
 	 * @param request
 	 * @param cookieName
 	 * @return
@@ -32,7 +34,7 @@ public final class CookieUtils {
 
 	/**
 	 * 得到Cookie的值,
-	 * 
+	 *
 	 * @param request
 	 * @param cookieName
 	 * @return
@@ -40,7 +42,7 @@ public final class CookieUtils {
 	public static String getCookieValue(HttpServletRequest request, String cookieName, boolean isDecoder) {
 		Cookie[] cookieList = request.getCookies();
 		if (cookieList == null || cookieName == null){
-			return null;			
+			return null;
 		}
 		String retValue = null;
 		try {
@@ -62,7 +64,7 @@ public final class CookieUtils {
 
 	/**
 	 * 得到Cookie的值,
-	 * 
+	 *
 	 * @param request
 	 * @param cookieName
 	 * @return
@@ -70,7 +72,7 @@ public final class CookieUtils {
 	public static String getCookieValue(HttpServletRequest request, String cookieName, String encodeString) {
 		Cookie[] cookieList = request.getCookies();
 		if (cookieList == null || cookieName == null){
-			return null;			
+			return null;
 		}
 		String retValue = null;
 		try {
@@ -130,7 +132,7 @@ public final class CookieUtils {
 
 	/**
 	 * 设置Cookie的值，并使其在指定时间内生效
-	 * 
+	 *
 	 * @param cookieMaxage
 	 *            cookie生效的最大秒数
 	 */
@@ -155,7 +157,7 @@ public final class CookieUtils {
 
 	/**
 	 * 设置Cookie的值，并使其在指定时间内生效
-	 * 
+	 *
 	 * @param cookieMaxage
 	 *            cookie生效的最大秒数
 	 */

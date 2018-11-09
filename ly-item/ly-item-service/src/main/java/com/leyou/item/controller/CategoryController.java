@@ -2,14 +2,12 @@ package com.leyou.item.controller;
 
 import com.leyou.item.pojo.Category;
 import com.leyou.item.service.CategoryService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,6 +19,7 @@ import java.util.List;
 @Controller
 @ResponseBody
 @RequestMapping("/category")
+@Slf4j
 public class CategoryController {
 
     @Autowired
@@ -38,5 +37,14 @@ public class CategoryController {
         return ResponseEntity.ok(list);
     }
 
+    @GetMapping("bid/{bid}")
+    public ResponseEntity<List<Category>> queryByBrandId(@PathVariable("bid") Long bid) {
+        List<Category> list = this.categoryService.queryByBrandId(bid);
+        if (list == null || list.size() < 1) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        //log.error(list.toString());
+        return ResponseEntity.ok(list);
+    }
 
 }
