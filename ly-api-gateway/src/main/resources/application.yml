@@ -23,6 +23,20 @@ zuul:
       path: /upload/**
       serviceId: upload-service
       strip-prefix: false
+    search-service: /search/**
+
   prefix: /api # 添加路由前缀
   retryable: true
 
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
+  metrics:
+    enabled: true
+ribbon:
+  ReadTimeout: 5000
+  ConnectTimeout: 2550
