@@ -13,8 +13,8 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @SpringBootApplication
 @EnableEurekaClient
 @EnableFeignClients
-public class LyGoodsPage {
+public class LyPageDetail {
     public static void main(String[] args) {
-        SpringApplication.run(LyGoodsPage.class,args);
+        SpringApplication.run(LyPageDetail.class,args);
     }
 }

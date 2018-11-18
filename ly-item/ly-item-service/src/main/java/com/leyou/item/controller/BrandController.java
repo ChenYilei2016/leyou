@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import tk.mybatis.mapper.entity.Example;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -43,7 +44,6 @@ public class BrandController {
     }
 
     @PostMapping
-
     public ResponseEntity<Void> saveBrand(Brand brand,
                                           @RequestParam("categories") List<Long> ids){
 
@@ -51,4 +51,23 @@ public class BrandController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    //根据 cid 获得有的 品牌 列表
+    @GetMapping("cid/{cid}")
+    public ResponseEntity<List<Brand>> queryBrandByCategoryId(@PathVariable("cid") Long cid){
+        return ResponseEntity.ok( brandService.queryBrandByCategoryId(cid) ) ;
+
+    }
+
+    //根据id查
+    @GetMapping("/{id}")
+    public ResponseEntity<Brand> queryById(@PathVariable("id")Long id){
+        return ResponseEntity.ok(brandService.queryByBid(id));
+    }
+
+
+    //多个id的 查询多个brand @RequestMapping("/brand")
+    @GetMapping("/list")
+    public ResponseEntity<List<Brand>> queryBrandsByIds(@RequestParam("ids")List<Long> ids ){
+        return ResponseEntity.ok(brandService.queryBrandsByIds(ids));
+    }
 }

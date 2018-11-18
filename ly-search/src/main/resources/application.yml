@@ -1,12 +1,15 @@
+
 server:
-  port: 8081
+  port: 8083
 spring:
+  data:
+    elasticsearch:
+      cluster-name: elasticsearch
+      cluster-nodes: 132.232.117.84:9300
+  jackson:
+    default-property-inclusion: non_null
   application:
-    name: item-service
-  datasource:
-    url: jdbc:mysql://132.232.117.84:3306/heima
-    username: root
-    password: root
+    name: search-service
 
 eureka:
   client:
@@ -18,7 +21,3 @@ eureka:
     prefer-ip-address: true
     ip-address: 127.0.0.1
     instance-id: ${spring.application.name}:${server.port}
-mybatis:
-  mapper-locations: classpath:/mapper/*.xml
-  configuration:
-    map-underscore-to-camel-case: true

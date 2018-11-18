@@ -2,6 +2,7 @@ package com.leyou.item.service;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.leyou.common.exception.LyException;
 import com.leyou.common.pojo.PageResult;
 import com.leyou.item.mapper.BrandMapper;
 import com.leyou.item.mapper.CategoryMapper;
@@ -56,6 +57,24 @@ public class BrandService {
         ids.forEach( (categoryId)->{
             brandMapper.insertCategoryIdBrandId(brandId,categoryId);
         } );
+    }
 
+    public Brand queryByBid(Long bid){
+        Brand brand = new Brand();
+        brand.setId(bid);
+        return brandMapper.selectOne(brand);
+    }
+
+    public List<Brand> queryBrandByCategoryId(Long cid) {
+        List<Brand> list = brandMapper.queryBrandByCategoryId(cid);
+
+        if(list.size() == 0){
+            throw new LyException("queryBrandByCategoryId 查询为0");
+        }
+        return list;
+    }
+
+    public List<Brand> queryBrandsByIds(List<Long> ids) {
+        return brandMapper.selectByIdList(ids);
     }
 }

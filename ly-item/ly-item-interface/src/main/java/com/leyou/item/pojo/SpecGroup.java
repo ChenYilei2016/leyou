@@ -4,10 +4,8 @@ import lombok.Data;
 import lombok.Value;
 import tk.mybatis.mapper.annotation.KeySql;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 /**
  * @author chenyilei
@@ -26,5 +24,8 @@ public class SpecGroup {
     private Long cid;
 
     private String name;
+
+    @Transient
+    private List<SpecParam> params; // 该组下的所有规格参数集合
 
 }

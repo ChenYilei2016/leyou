@@ -11,8 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @author chenyilei
@@ -48,5 +48,56 @@ public class SpecificationService {
             throw new LyException("param 为空");
         }
         return select;
+    }
+
+    public List<SpecParam>  queryParamList(Long gid, Long cid, Boolean searching, Boolean generic) {
+        SpecParam specParam =new SpecParam();
+        specParam.setGroupId(gid);
+        specParam.setCid(cid);
+        specParam.setSearching(searching);
+        specParam.setGeneric(generic);
+
+        List<SpecParam> select = specParamMapper.select(specParam);
+        if(CollectionUtils.isEmpty(select)){
+            throw new LyException("param 为空cid:"+cid+"--gid:"+gid);
+        }
+        return select;
+    }
+
+    public List<SpecGroup> queryGroupsExByCid(Long cid) {
+        List<SpecGroup> specGroups = queryGroupsByCid(cid);
+        List<SpecParam> specParams = queryParamList(null, cid, null, null);
+
+        Map<Long,List<SpecParam>> map= new HashMap<>();
+        specParams.forEach( param->{
+            if(!map.containsKey(param.getGroupId())){
+                map.put(param.getGroupId(),new ArrayList<>());
+            }
+            map.get(param.getGroupId()).add(param);
+        } );
+
+        specGroups.forEach(group->{
+            group.setParams( map.get(group.getId()) );
+        });
+        specGroups.forEach(System.out::println);
+        return specGroups;
+//        Set<Long> groupIdList = specGroups.stream().map(x -> x.getId()).collect(Collectors.toSet());
+//        for (Long groupId : groupIdList) {
+//
+//            List<SpecParam> specParams1 = specParams.stream().map(x -> {
+//                if (x.getGroupId().equals(groupId)) {
+//                    return x;
+//                } else {
+//                    return null;
+//                }
+//            }).collect(Collectors.toList());
+//
+//            specGroups.forEach(x->{
+//                if(x.getId().equals(groupId)){
+//                    x.setParams(specParams1);
+//                }
+//            });
+//        }
+//
     }
 }

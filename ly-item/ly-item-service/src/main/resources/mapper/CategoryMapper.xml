@@ -7,4 +7,13 @@
         SELECT * FROM tb_category WHERE id IN (SELECT category_id FROM tb_category_brand WHERE brand_id = #{bid})
     </select>
 
+    <select id="queryByIdList" resultType="com.leyou.item.pojo.Category">
+        select  * FROM tb_category where id in
+        (
+            <foreach collection="list" item="temp" separator=",">
+                #{temp}
+            </foreach>
+        )
+    </select>
+
 </mapper>

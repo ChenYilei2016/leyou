@@ -27,4 +27,8 @@ public class CategoryService {
     public List<Category> queryByBrandId(Long bid) {
         return categoryMapper.selecListByBrandId(bid);
     }
+
+    public List<Category> queryByIdList(List<Long> ids){
+        return categoryMapper.queryByIdList(ids);
+    }
 }

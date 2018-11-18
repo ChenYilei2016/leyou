@@ -26,7 +26,17 @@ public class SpecificationController {
     }
 
     @GetMapping("/params")
-    public ResponseEntity<List<SpecParam>> queryParamsByGroupId(@RequestParam("gid") Long gid){
-        return ResponseEntity.ok(specificationService.queryParamsByGid(gid));
+    public ResponseEntity<List<SpecParam>> queryParams(
+            @RequestParam(value = "gid",required = false) Long gid,
+            @RequestParam(value = "cid",required = false) Long cid,
+            @RequestParam(value="searching", required = false) Boolean searching,
+            @RequestParam(value="generic", required = false) Boolean generic){
+
+        return ResponseEntity.ok(specificationService.queryParamList(gid,cid,searching,generic));
+    }
+
+    @GetMapping("/group")
+    public ResponseEntity<List<SpecGroup>> querySpecsGroupsByCid(@RequestParam("cid") Long cid){
+        return ResponseEntity.ok(specificationService.queryGroupsExByCid(cid));
     }
 }
