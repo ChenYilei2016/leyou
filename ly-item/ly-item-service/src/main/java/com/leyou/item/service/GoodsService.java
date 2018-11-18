@@ -6,7 +6,9 @@ import com.leyou.common.exception.LyException;
 import com.leyou.common.pojo.PageResult;
 import com.leyou.item.mapper.*;
 import com.leyou.item.pojo.*;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -25,6 +27,7 @@ import java.util.stream.Collectors;
  */
 
 @Service
+@Slf4j
 public class GoodsService {
 
     @Autowired
@@ -44,6 +47,9 @@ public class GoodsService {
 
     @Autowired
     BrandService brandService;
+
+    @Autowired
+    AmqpTemplate amqpTemplate;
 
     @Transactional
     public PageResult<Spu> querySpuByPageAndSort(Integer page, Integer rows, Boolean saleable, String key) {
@@ -120,6 +126,12 @@ public class GoodsService {
             throw new LyException("insert stocks list == 0");
         }
 
+        try {
+            sendMessage(spu.getId(),"save");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 
     public SpuDetail querySpuDetailBySpuId(Long id) {
@@ -153,5 +165,14 @@ public class GoodsService {
         spu.setSpuDetail(querySpuDetailBySpuId(id) );
 
         return spu;
+    }
+
+    private void sendMessage(Long id, String type){
+        // 发送消息
+        try {
+            this.amqpTemplate.convertAndSend("item." + type, id);
+        } catch (Exception e) {
+            log.error("{}商品消息发送异常，商品id：{}", type, id, e);
+        }
     }
 }

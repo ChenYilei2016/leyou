@@ -3,6 +3,12 @@ spring:
     name: goods-page
   thymeleaf:
     cache: false
+  rabbitmq:
+    host: 132.232.117.84
+    username: root
+    password: root
+    virtual-host: /leyou
+
 
 server:
   port: 8084

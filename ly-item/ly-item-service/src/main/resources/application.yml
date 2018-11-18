@@ -7,6 +7,21 @@ spring:
     url: jdbc:mysql://132.232.117.84:3306/heima
     username: root
     password: root
+  rabbitmq:
+    host: 132.232.117.84
+    username: root
+    password: root
+    virtual-host: /leyou
+
+    publisher-confirms: true
+    template:
+      retry:
+        enabled: true
+        initial-interval: 10000ms
+        max-interval: 300000ms
+        multiplier: 2
+      exchange: ly.item.exchange
+
 
 eureka:
   client:
@@ -22,3 +37,4 @@ mybatis:
   mapper-locations: classpath:/mapper/*.xml
   configuration:
     map-underscore-to-camel-case: true
+
