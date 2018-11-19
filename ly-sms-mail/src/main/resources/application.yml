@@ -8,6 +8,8 @@ spring:
     virtual-host: /leyou
   application:
     name: sms-service
+  redis:
+    host: 132.232.117.84
 
 
 
