@@ -12,6 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import tk.mybatis.mapper.entity.Example;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.List;
 
@@ -55,7 +57,6 @@ public class BrandController {
     @GetMapping("cid/{cid}")
     public ResponseEntity<List<Brand>> queryBrandByCategoryId(@PathVariable("cid") Long cid){
         return ResponseEntity.ok( brandService.queryBrandByCategoryId(cid) ) ;
-
     }
 
     //根据id查

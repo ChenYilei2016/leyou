@@ -14,8 +14,8 @@
         <module>ly-common</module>
         <module>ly-upload</module>
         <module>ly-search</module>
-        <module>ly-good-spage</module>
         <module>ly-goods-page</module>
+        <module>ly-sms-mail</module>
     </modules>
     <packaging>pom</packaging>
 

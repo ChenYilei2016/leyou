@@ -23,7 +23,11 @@ public class ItemListener {
 
     @RabbitListener(bindings =@QueueBinding(
             value = @Queue(value = "page.item.save.queue"),
-            exchange = @Exchange(name = "ly.item.exchange",type =ExchangeTypes.TOPIC),
+            exchange = @Exchange(
+                    name = "ly.item.exchange"
+                    ,type =ExchangeTypes.TOPIC,
+                    ignoreDeclarationExceptions = "true"
+            ),
             key = {"item.save"}
     ))
     public void Spusave(Long id){
