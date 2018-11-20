@@ -12,5 +12,8 @@
     <file url="file://$PROJECT_DIR$/ly-search" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ly-sms-mail" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ly-upload" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ly-user" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ly-user/ly-user-interface" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ly-user/ly-user-service" charset="UTF-8" />
   </component>
 </project>

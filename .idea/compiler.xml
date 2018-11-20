@@ -16,6 +16,8 @@
         <module name="ly-search" />
         <module name="ly-sms-mail" />
         <module name="ly-upload" />
+        <module name="ly-user-interface" />
+        <module name="ly-user-service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

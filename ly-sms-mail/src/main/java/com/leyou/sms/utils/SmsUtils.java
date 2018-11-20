@@ -1,5 +1,6 @@
 package com.leyou.sms.utils;
 
+import com.alibaba.fastjson.JSONObject;
 import com.aliyuncs.DefaultAcsClient;
 import com.aliyuncs.IAcsClient;
 import com.aliyuncs.dysmsapi.model.v20170525.SendSmsRequest;
@@ -94,7 +95,9 @@ public class SmsUtils {
         //发送成功 限制时间
         if("OK".equals(sendSmsResponse.getCode())){
             log.info("喵喵喵");
-            redisTemplate.opsForValue().set(KEY_PREFIX+phone,phone,TIME_ISOLATION,TimeUnit.MILLISECONDS);
+            Object code = JSONObject.parseObject(templateParam).get("code");
+            //3分钟的 有效期
+            redisTemplate.opsForValue().set(KEY_PREFIX+phone,code,3*TIME_ISOLATION,TimeUnit.MILLISECONDS);
         }
         return sendSmsResponse;
     }
