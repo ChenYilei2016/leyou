@@ -60,4 +60,15 @@ public class TESTM {
         return sb.toString();
     }
 
+    @Test
+    public void temp(){
+        RuntimeException runtimeException =new RuntimeException("gadd");
+        try {
+            throw runtimeException;
+        }catch (Exception e){
+            System.out.println( e.getMessage() );
+        }
+
+    }
+
 }

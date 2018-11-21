@@ -1,3 +1,4 @@
+package com.leyou.user.utils;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
 
@@ -8,8 +9,6 @@ import java.util.UUID;
  * @create: 2018-04-30 15:56
  **/
 public class CodecUtils {
-
-
 
     public static String md5Hex(String data,String salt) {
         if (StringUtils.isBlank(salt)) {

@@ -3,7 +3,7 @@ package com.leyou.upload.config;
 import com.github.tobato.fastdfs.domain.StorePath;
 import com.github.tobato.fastdfs.domain.ThumbImageConfig;
 import com.github.tobato.fastdfs.service.FastFileStorageClient;
-import com.leyou.upload.LeYouUploadApp;
+import com.leyou.LeYouUploadApp;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

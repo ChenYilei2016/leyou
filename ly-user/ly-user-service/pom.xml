@@ -46,6 +46,16 @@
             <artifactId>commons-codec</artifactId>
             <version>1.11</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.leyou.common</groupId>
+            <artifactId>ly-common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
 
     </dependencies>
 

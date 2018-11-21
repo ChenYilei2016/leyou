@@ -1,10 +1,13 @@
 package com.leyou.common.exception;
 
+import lombok.Getter;
+
 /**
  * @author chenyilei
  * @date 2018/11/06-18:26
  * hello everyone
  */
+@Getter
 public class LyException extends RuntimeException {
 
     int code;

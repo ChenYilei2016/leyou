@@ -24,7 +24,8 @@ zuul:
       serviceId: upload-service
       strip-prefix: false
     search-service: /search/**
-
+    user-service: /user/**
+    auth-service: /auth/**
   prefix: /api # 添加路由前缀
   retryable: true
 

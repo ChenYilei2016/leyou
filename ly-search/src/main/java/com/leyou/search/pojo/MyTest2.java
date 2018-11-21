@@ -6,12 +6,15 @@ import com.leyou.search.client.BrandClient;
 import com.leyou.search.client.CategoryClient;
 import com.leyou.search.client.GoodsClient;
 import com.leyou.search.client.SpecificationClient;
+import com.leyou.search.controller.SearchController;
 import com.leyou.search.repository.GoodsRepositroy;
 import com.leyou.search.service.SearchService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.core.annotation.Order;
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
 import org.springframework.stereotype.Component;
@@ -29,6 +32,7 @@ import java.util.stream.Collectors;
 
 
 @Component
+@Order(1)
 public class MyTest2 {
     @Autowired
     ElasticsearchTemplate elasticsearchTemplate;
