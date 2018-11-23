@@ -28,6 +28,7 @@ zuul:
     auth-service: /auth/**
   prefix: /api # 添加路由前缀
   retryable: true
+  sensitive-headers:
 
 hystrix:
   command:
@@ -41,3 +42,16 @@ hystrix:
 ribbon:
   ReadTimeout: 5000
   ConnectTimeout: 2550
+
+
+ly:
+  jwt:
+    pubKeyPath: C:/Users/chenyilei/Desktop/SteamAnd Vm/rsa.pub # 公钥地址
+    cookie-name: LY_TOKEN
+    filter:
+      - /api/auth
+      - /api/user/register
+      - /api/user/code
+      - /api/user/check
+      - /api/search
+      - /api/item
