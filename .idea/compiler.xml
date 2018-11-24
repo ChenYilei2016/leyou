@@ -15,6 +15,7 @@
         <module name="ly-goods-page" />
         <module name="ly-item-interface" />
         <module name="ly-item-service" />
+        <module name="ly-order" />
         <module name="ly-registry" />
         <module name="ly-search" />
         <module name="ly-sms-mail" />

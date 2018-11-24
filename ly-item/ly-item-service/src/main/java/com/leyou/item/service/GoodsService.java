@@ -175,4 +175,19 @@ public class GoodsService {
             log.error("{}商品消息发送异常，商品id：{}", type, id, e);
         }
     }
+
+    public List<Sku> querySkusByIds(List<Long> ids) {
+        return skuMapper.selectByIdList(ids);
+    }
+
+    @Transactional
+    public void decreaseStock(List<CartDto> carts) {
+        for (CartDto cart : carts) {
+            // update  stock= stock -1 and stock >=1
+            int count = stockMapper.decreaseStock(cart.getSkuId(), cart.getNum());
+            if(1!= count){
+                throw new RuntimeException("库存不足--防止超卖");
+            }
+        }
+    }
 }

@@ -2,10 +2,7 @@ package com.leyou.item.controller;
 
 import com.leyou.common.pojo.PageResult;
 import com.leyou.item.mapper.SkuMapper;
-import com.leyou.item.pojo.Sku;
-import com.leyou.item.pojo.SpecGroup;
-import com.leyou.item.pojo.Spu;
-import com.leyou.item.pojo.SpuDetail;
+import com.leyou.item.pojo.*;
 import com.leyou.item.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -86,6 +83,17 @@ public class GoodsController {
         return ResponseEntity.ok(spu);
     }
 
+    @GetMapping("/sku/list/ids")
+    public ResponseEntity<List<Sku>> querySkusByIds(@RequestParam("ids")List<Long> ids){
+        return ResponseEntity.ok( goodsService.querySkusByIds(ids) );
+    }
+
+    @PostMapping("/stock/decrease")
+    public ResponseEntity<Void> stockDecrease(
+            @RequestBody List<CartDto> carts){
+        goodsService.decreaseStock(carts);
+        return ResponseEntity.ok(null);
+    }
 
 }
 

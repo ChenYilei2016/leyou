@@ -1,6 +1,7 @@
 package com.leyou.item.mapper;
 
 import com.leyou.item.pojo.Sku;
+import tk.mybatis.mapper.additional.idlist.SelectByIdListMapper;
 import tk.mybatis.mapper.common.Mapper;
 
 /**
@@ -8,5 +9,5 @@ import tk.mybatis.mapper.common.Mapper;
  * @date 2018/11/10-10:32
  * hello everyone
  */
-public interface SkuMapper extends Mapper<Sku> {
+public interface SkuMapper extends Mapper<Sku>,SelectByIdListMapper<Sku,Long> {
 }

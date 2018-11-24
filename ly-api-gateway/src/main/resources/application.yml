@@ -27,6 +27,7 @@ zuul:
     user-service: /user/**
     auth-service: /auth/**
     cart-service: /cart/**
+    order-service: /order/**
   prefix: /api # 添加路由前缀
   retryable: true
   sensitive-headers:
