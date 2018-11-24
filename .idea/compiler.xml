@@ -9,6 +9,7 @@
         <module name="ly-api-gateway" />
         <module name="ly-auth-common" />
         <module name="ly-auth-service" />
+        <module name="ly-cart" />
         <module name="ly-common" />
         <module name="ly-good-spage" />
         <module name="ly-goods-page" />
