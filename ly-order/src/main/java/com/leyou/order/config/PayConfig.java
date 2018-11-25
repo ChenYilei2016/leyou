@@ -17,7 +17,7 @@ public class PayConfig implements WXPayConfig {
    private String key="T6m9iK73b0kn9g5v426MKfHQH7X8rKwb"; //签名
    private int httpConnectTimeoutMs = 1000;
    private int httpReadTimeoutMs = 5000;
-   private String notifyUrl = "http://www.leyou.com/";
+   private String notifyUrl = "http://fzep2d.natappfree.cc/notify";
 
     @Override
     public InputStream getCertStream() {

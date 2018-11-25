@@ -39,12 +39,23 @@ public class OrderController {
         return ResponseEntity.ok(orderService.queryOrderById(orderId) );
     }
 
-    // 生成二维码的 订单/连接
+    // 统一下单 生成二维码的 订单/连接
     @GetMapping("/url/{id}")
     public ResponseEntity<String> createPayUrl(@PathVariable("id") Long orderId){
         log.warn("进入二维码生成");
         return ResponseEntity.ok(orderService.createPayUrl(orderId));
     }
 
-    // 微信给的回调
+    /**
+     * 0 未支付
+     * 1 已支付
+     * 2 支付失败
+     * @param id
+     * @return
+     */
+    @GetMapping("/state/{id}")
+    public ResponseEntity<Integer> queryOrderStatu(@PathVariable("id")Long id){
+        return ResponseEntity.ok(orderService.queryStatu(id));
+    }
+
 }
