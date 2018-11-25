@@ -38,12 +38,12 @@ hystrix:
       execution:
         isolation:
           thread:
-            timeoutInMilliseconds: 5000
+            timeoutInMilliseconds: 7100
   metrics:
     enabled: true
 ribbon:
-  ReadTimeout: 5000
-  ConnectTimeout: 2550
+  ReadTimeout: 7000
+  ConnectTimeout: 5000
 
 
 ly:

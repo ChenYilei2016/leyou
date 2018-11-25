@@ -15,6 +15,7 @@ import com.leyou.order.pojo.Address;
 import com.leyou.order.pojo.Order;
 import com.leyou.order.pojo.OrderDetail;
 import com.leyou.order.pojo.OrderStatus;
+import com.leyou.order.utils.PayHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +54,8 @@ public class OrderService {
 
     @Autowired
     GoodsClient goodsClient;
+    @Autowired
+    PayHelper payHelper;
 
     @Transactional
     public Long createOrder(OrderDto orderDto) {
@@ -127,4 +130,30 @@ public class OrderService {
         return order.getOrderId();
     }
 
+    public Order queryOrderById(Long orderId) {
+        Order order = orderMapper.selectByPrimaryKey(orderId);
+
+        //详情
+        OrderDetail varSelect = new OrderDetail();
+        varSelect.setOrderId(orderId);
+        List<OrderDetail> select = orderDetailMapper.select(varSelect);
+        order.setOrderDetails(select);
+        //状态
+        OrderStatus orderStatus = orderStatusMapper.selectByPrimaryKey(orderId);
+        order.setStatus(orderStatus);
+
+        return order;
+    }
+
+    public String createPayUrl(Long orderId) {
+        //获取订单的价格
+        Order order = queryOrderById(orderId);
+
+        if(OrderStatusEnum.INIT_TIME.getCode() != order.getStatus().getStatus()){
+            throw new RuntimeException("订单状态不正确");
+        }
+
+        String title = order.getOrderDetails().get(0).getTitle();
+        return payHelper.createOrder(orderId,1L,title); //TODO: 测试1分钱
+    }
 }

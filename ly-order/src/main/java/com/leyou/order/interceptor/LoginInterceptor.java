@@ -6,6 +6,7 @@ import com.leyou.auth.utils.JwtUtils;
 
 import com.leyou.order.config.JwtProperties;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -44,7 +45,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 
     public static final ThreadLocal<UserInfo> local = new ThreadLocal<UserInfo>();
 
-    public LoginInterceptor(JwtProperties jwtProperties) {
+    public LoginInterceptor(@Autowired JwtProperties jwtProperties) {
         this.jwtProperties = jwtProperties;
     }
 

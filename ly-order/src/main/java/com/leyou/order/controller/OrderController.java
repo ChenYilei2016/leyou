@@ -3,14 +3,13 @@ package com.leyou.order.controller;
 import com.leyou.common.utils.IdWorker;
 import com.leyou.item.pojo.OrderDto;
 import com.leyou.order.config.IdWorkerProperties;
+import com.leyou.order.pojo.Order;
 import com.leyou.order.service.OrderService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -21,14 +20,31 @@ import javax.validation.Valid;
  */
 @RestController
 @RequestMapping("/order")
+@Slf4j
 public class OrderController {
     @Autowired
     OrderService orderService;
 
+    //创建订单
     @PostMapping
     public ResponseEntity<Long> createOrder(
             @RequestBody @Valid OrderDto orderDto
             ){
         return ResponseEntity.ok(orderService.createOrder(orderDto));
     }
+
+    //查询订单
+    @GetMapping("/{orderId}")
+    public ResponseEntity<Order> queryOrderById(@PathVariable("orderId") Long orderId){
+        return ResponseEntity.ok(orderService.queryOrderById(orderId) );
+    }
+
+    // 生成二维码的 订单/连接
+    @GetMapping("/url/{id}")
+    public ResponseEntity<String> createPayUrl(@PathVariable("id") Long orderId){
+        log.warn("进入二维码生成");
+        return ResponseEntity.ok(orderService.createPayUrl(orderId));
+    }
+
+    // 微信给的回调
 }
